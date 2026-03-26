@@ -1,20 +1,19 @@
-import { Console, error } from "console";
 import express from "express";
-import fs, { read } from "fs"
-import bodyParser from "body-parser"
+import fs from "fs";
+import bodyParser from "body-parser";
 
-const app = express()
-app.use(bodyParser.json())
+const app = express();
+app.use(bodyParser.json());
 
-const readData = () =>{
-    try{
-        const data = fs.readFileSync("./db.json");
-        return JSON.parse(data)
-    }   catch{
-        error
-        console.log(error)
+const readData = () => {
+    try {
+        const data = fs.readFileSync("./db.json", "utf-8");
+        return JSON.parse(data);
+    } catch (err) {
+        console.log("Error leyendo db.json, devolviendo objeto vacío por defecto", err.message);
+        return { books: [] };
     }
-}
+};
 
 const writeData = (data) => {
     try {
@@ -87,6 +86,7 @@ app.delete("/books/:id", (req, res) => {
     writeData(data)
     res.json({message: "server 3000"})
 })
-app.listen(3000, () => {
-    console.log("server 3000")
-})
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
+});
