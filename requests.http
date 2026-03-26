@@ -1,0 +1,28 @@
+GET http://localhost:3000/books HTTP/1.1
+
+
+###
+GET http://localhost:3000/books/2 HTTP/1.1
+
+
+###
+POST http://localhost:3000/books HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Hablan los gurús",
+    "author": "Joseph Boyett",
+    "year": 2024
+}
+
+###
+PUT http://localhost:3000/books/3 HTTP/1.1
+Content-Type: application/json
+
+{
+    "year": 2019
+}
+
+
+###
+DELETE http://localhost:3000/books/3 HTTP/1.1
