@@ -17,7 +17,7 @@ const readData = () => {
 
 const writeData = (data) => {
     try {
-        fs.writeFileSync("./db.json", JSON.stringify(data))
+        fs.writeFileSync("db.json", JSON.stringify(data))
     } catch (error){
         console.log(error)
     }
